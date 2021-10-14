@@ -2,36 +2,22 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: "class", // or 'media' or 'class'
 
-  screens: { 
-    '3xs': "300px",
-    '2xs': "450px",
-    'xs': "550px",
-    sm: "	640px",
-    md: "	768px",
-    '1k': "1000px",
-    lg: "	1024px",
-    xl: "	1280px",
-    "2xl": "1536px",
-    "2k": "1920px",
-    "4k": "1920px",
-  },
-
   theme: {
     extend: {
       minHeight: {
-        header: "60px",
-        minus_header: "calc(100vh - 60px)",
-        minus_header_dbl: "calc(100vh - 120px)",
+        header: "50px",
+        minus_header: "calc(100vh - 50px)",
+        minus_header_dbl: "calc(100vh - 100px)",
       },
       maxHeight: {
-        header: "60px",
-        minus_header: "calc(100vh - 60px)",
-        minus_header_dbl: "calc(100vh - 120px)",
+        header: "50px",
+        minus_header: "calc(100vh - 50px)",
+        minus_header_dbl: "calc(100vh - 100px)",
       },
       spacing: {
-        header: "60px",
-        minus_header: "calc(100vh - 60px)",
-        minus_header_dbl: "calc(100vh - 120px)",
+        header: "50px",
+        minus_header: "calc(100vh - 50px)",
+        minus_header_dbl: "calc(100vh - 100px)",
         0.1: "0.1px",
         0.2: "0.2px",
         0.3: "0.3px",
@@ -56,9 +42,9 @@ module.exports = {
   },
   variants: {
     extend: {
-      padding: ['hover', 'group-hover'],
-      dark: ['screens'],
-      screens: ['dark'],
+      padding: ["hover", "group-hover"],
+      dark: ["screens"],
+      screens: ["dark"],
     },
   },
   plugins: [],
