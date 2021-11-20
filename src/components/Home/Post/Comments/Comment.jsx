@@ -36,6 +36,9 @@ const Comment = ({comment: {body, user, _id}}) => {
     })
       .then((r) => r.json())
       .then((data) => {
+        setTimeout(() => {
+          setOpenReply(false);
+        }, 500);
         replyBtn.current.focus();
         setReplyText("");
         setAllReplies((prev) => [...prev, {...data.reply}]);
@@ -46,7 +49,7 @@ const Comment = ({comment: {body, user, _id}}) => {
   return (
     <>
       <div className="flex items-start space-x-2">
-        <Link to="/profile">
+        <Link to={`/${user?.username}`}>
           <img
             src={user?.photo}
             alt=""
@@ -55,14 +58,14 @@ const Comment = ({comment: {body, user, _id}}) => {
         </Link>
         <div>
           <div className="bg-gray-500 bg-opacity-20 px-2 py-1 rounded">
-            <Link to="/profile">
+            <Link to={`/${user?.username}`}>
               <p className="font-semibold text-sm cursor-pointer text-blue-300 hover:underline">
                 {user?.username}
               </p>
             </Link>
             <p className="text-xs font-medium p-1">{body}</p>
           </div>
-          <div className="pl-2">
+          <div className="w-full flex justify-center">
             <button className="text-xs font-semibold hover:underline">
               Like
             </button>

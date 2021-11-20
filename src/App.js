@@ -11,7 +11,7 @@ import PrivateRoute from "./components/Routes/PrivateRoute";
 const App = () => {
   const {
     dispatch,
-    state: {showReg, user},
+    state: {showReg, user, fetchPosts},
   } = useRootContext();
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const App = () => {
         })
         .catch((error) => alert("error ", error));
     }
-  }, [user, dispatch]);
+  }, [user, dispatch, fetchPosts]);
 
   return (
     <div style={{background: "#100e17"}} className="text-white">

@@ -1,6 +1,7 @@
 import {XCircleIcon} from "@heroicons/react/solid";
 import {CameraIcon} from "@heroicons/react/outline";
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
+import {Link} from "react-router-dom";
 import {useRootContext} from "../../../context";
 
 export default function PostForm() {
@@ -83,7 +84,9 @@ export default function PostForm() {
   return (
     <section style={{background: "#242526"}} className="p-5 rounded-lg">
       <div className="items-start flex space-x-5 ">
-        <img className="w-9 h-9 rounded-full" src={user.photo} alt="" />
+        <Link to={user?.username}>
+          <img className="w-9 h-9 rounded-full" src={user.photo} alt="" />
+        </Link>
         <div className="w-full">
           <form onSubmit={handleSubmit} className="w-full">
             <textarea

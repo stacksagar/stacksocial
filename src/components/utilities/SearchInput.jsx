@@ -1,7 +1,8 @@
 import React from "react";
 
-const Input = ({type, placeholder}) => (
+const Input = ({type, placeholder, ...others}) => (
   <input
+    {...others}
     className="rounded-l px-3 py-1 bg-gray-700 text-white ring-1 focus:ring outline-none focus:bg-black"
     type={type}
     placeholder={placeholder}

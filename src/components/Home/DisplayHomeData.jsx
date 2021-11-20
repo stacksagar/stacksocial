@@ -17,7 +17,7 @@ const Home = () => {
       authorization: "Bearer " + localStorage.getItem("stackmedia_token"),
     })
       .then((res) => res.json())
-      .then((data) => setPosts(data.posts.reverse()))
+      .then((data) => setPosts(data.posts))
       .catch((e) => console.log(e));
   }, [fetchPosts]);
 

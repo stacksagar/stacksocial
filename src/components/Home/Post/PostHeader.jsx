@@ -6,6 +6,7 @@ import {
   EyeOffIcon,
 } from "@heroicons/react/outline";
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import {useRootContext} from "../../../context";
 
 const Button = ({Icon, text, setShowOptions, onClick}) => (
@@ -50,10 +51,12 @@ const PostHeader = ({post, setShowEdit}) => {
 
   return (
     <div className="flex justify-between relative">
-      <div className="flex space-x-3">
-        <img className="w-8 h-8 rounded-full" src={postedBy?.photo} alt="" />
-        <p className="text-gray-300">{postedBy?.username}</p>
-      </div>
+      <Link to={`/${postedBy?.username}`}>
+        <div className="flex space-x-3">
+          <img className="w-8 h-8 rounded-full" src={postedBy?.photo} alt="" />
+          <p className="text-gray-300">{postedBy?.username}</p>
+        </div>
+      </Link>
       <button
         onClick={() => setShowOptions((prev) => !prev)}
         className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-700 focus:ring"

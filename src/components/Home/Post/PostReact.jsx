@@ -1,6 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
 import Like from "../../Icons/Like";
-import Share from "../../Icons/Share";
 import Save from "../../Icons/Save";
 import {Dislike} from "../../Icons/Dislike";
 import Liked from "../../Icons/Liked";
@@ -13,6 +12,9 @@ const PostReact = ({post}) => {
     state: {user},
   } = useRootContext();
 
+  const [postSaved, setPostSaved] = useState(
+    user.savedPosts.includes(post._id)
+  );
   const likeAndDislikeHandler = (action, _id) => {
     fetch(`/post/${action}`, {
       method: "put",
@@ -29,8 +31,32 @@ const PostReact = ({post}) => {
         // console.log(data);
         dispatch({type: "FETCH_POSTS"});
       })
-
       .catch((error) => console.log(error));
+  };
+
+  const savePostHandler = () => {
+    fetch("/user/savePost", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("stackmedia_token"),
+      },
+      body: JSON.stringify({
+        postID: post._id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.doc.savedPosts.includes(post._id)) {
+          setPostSaved(true);
+          console.log("saved");
+        } else {
+          setPostSaved(false);
+          console.log("unsaved");
+        }
+        dispatch({type: "FETCH_POSTS"});
+      })
+      .catch(console.log);
   };
 
   return (
@@ -51,14 +77,14 @@ const PostReact = ({post}) => {
         <span>{post?.dislikes.length}</span>
       </button>
 
-      <button className="flex space-x-1 items-center">
-        <Share />
-        <span>Share</span>
-      </button>
-
-      <button className="flex space-x-1 items-center">
-        <Save />
-        <span>Save</span>
+      <button
+        onClick={savePostHandler}
+        className={`flex space-x-1 items-center ${
+          postSaved && "text-blue-300"
+        }`}
+      >
+        <Save saved={postSaved} />
+        <span>{postSaved ? "Saved" : "Save"}</span>
       </button>
     </div>
   );

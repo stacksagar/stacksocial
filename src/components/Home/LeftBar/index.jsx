@@ -18,7 +18,7 @@ const LeftBar = () => {
           alt=""
         />
         <p>{user?.username}</p>
-        <Link to="/profile">
+        <Link to={`/${user?.username}`}>
           <button className="outline-none focus:ring ring-1 px-5 my-4 py-1 hover:bg-blue-500 rounded-full">
             View Profile
           </button>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Input from "../../utilities/input";
 import Button from "../../utilities/Button";
 
@@ -16,33 +16,72 @@ const Layout = ({children}) => (
 );
 
 const ChangePassword = () => {
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [btnText, setBtnText] = useState("Change Password");
+  const changePassword = () => {
+    fetch("/user/changePassword", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("stackmedia_token"),
+      },
+      body: JSON.stringify({
+        oldPassword,
+        newPassword,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+          return;
+        }
+        console.log(data);
+        setBtnText("Changed");
+      })
+      .catch(console.log);
+  };
+
   return (
     <div className="flex flex-col space-y-5">
       <Layout>
         <Left> Old Password </Left>
         <Right>
-          <Input type="password" />
+          <Input
+            value={oldPassword}
+            onChange={(e) => {
+              setBtnText("Change Password");
+              setOldPassword(e.target.value);
+            }}
+            type="password"
+          />
         </Right>
       </Layout>
 
       <Layout>
         <Left> New Password </Left>
         <Right>
-          <Input type="password" />
-        </Right>
-      </Layout>
-
-      <Layout>
-        <Left> Confirm New Password </Left>
-        <Right>
-          <Input type="password" />
+          <Input
+            value={newPassword}
+            onChange={(e) => {
+              setBtnText("Change Password");
+              setNewPassword(e.target.value);
+            }}
+            type="password"
+          />
         </Right>
       </Layout>
 
       <Layout>
         <Left> </Left>
         <Right>
-          <Button bg="bg-blue-500" className="py-2" text="Change Password" />
+          <Button
+            onClick={changePassword}
+            bg="bg-blue-500"
+            className="py-2"
+            text={btnText}
+          />
           <br />
           <br />
           <a href="/">Forgot Password</a>

@@ -1,6 +1,14 @@
 import React from "react";
 
-const Input = ({type, placeholder, name, notLabel, error, ...all}) => (
+const Input = ({
+  type,
+  placeholder,
+  name,
+  notLabel,
+  error,
+  onChange,
+  ...all
+}) => (
   <div className="w-full">
     {!notLabel && (
       <label
@@ -12,6 +20,7 @@ const Input = ({type, placeholder, name, notLabel, error, ...all}) => (
     )}
     <input
       {...all}
+      onChange={onChange}
       className="rounded px-3 w-full py-1 bg-gray-700 text-white ring-1 focus:ring outline-none focus:bg-black"
       type={type}
       name={name}
