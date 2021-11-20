@@ -51,4 +51,7 @@ const Signup = ({handleForm, handleInput, error, errors, loading}) => {
   );
 };
 
-export default withFetch(Signup, "/user/signup");
+export default withFetch(
+  Signup,
+  "https://stacksocial-backend.herokuapp.com/user/signin/user/signup"
+);
