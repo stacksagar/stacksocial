@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Input from "../../utilities/input";
 import Button from "../../utilities/Button";
+import keys from "../../utilities/keys";
 
 const Left = ({children}) => (
   <div className="w-80 text-right flex justify-end pr-3">{children}</div>
@@ -20,7 +21,7 @@ const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [btnText, setBtnText] = useState("Change Password");
   const changePassword = () => {
-    fetch("/user/changePassword", {
+    fetch(keys.BACKEND_URL + "/user/changePassword", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

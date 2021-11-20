@@ -3,6 +3,7 @@ import ProfileHead from "./ProfileHead";
 import ProfilePosts from "./ProfilePosts";
 import {useParams} from "react-router-dom";
 import {useRootContext} from "../../context";
+import keys from "../utilities/keys";
 
 const Profile = (props) => {
   const {
@@ -25,7 +26,7 @@ const Profile = (props) => {
   }, [user, profileUser]);
 
   useEffect(() => {
-    fetch(`/user/${username}`, {
+    fetch(keys.BACKEND_URL + `/user/${username}`, {
       method: "get",
     })
       .then((res) => res.json())

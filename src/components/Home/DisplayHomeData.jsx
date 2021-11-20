@@ -3,6 +3,7 @@ import Post from "./Post";
 import LeftBar from "./LeftBar";
 import RightBar from "./RightBar";
 import NewPost from "./NewPost";
+import keys from "../utilities/keys";
 import {useRootContext} from "../../context";
 
 const Home = () => {
@@ -12,7 +13,7 @@ const Home = () => {
   } = useRootContext();
 
   useEffect(() => {
-    fetch("/post/all", {
+    fetch(keys.BACKEND_URL + "/post/all", {
       method: "get",
       authorization: "Bearer " + localStorage.getItem("stackmedia_token"),
     })

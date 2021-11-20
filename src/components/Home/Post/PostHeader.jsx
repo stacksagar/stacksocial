@@ -8,7 +8,7 @@ import {
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {useRootContext} from "../../../context";
-
+import keys from "../../utilities/keys";
 const Button = ({Icon, text, setShowOptions, onClick}) => (
   <button
     onClick={(e) => {
@@ -32,7 +32,7 @@ const PostHeader = ({post, setShowEdit}) => {
   const [showOptions, setShowOptions] = useState(false);
 
   const deletePostHandler = (id) => {
-    fetch("/post/delete", {
+    fetch(keys.BACKEND_URL + "/post/delete", {
       method: "delete",
       headers: {
         "Content-Type": "application/json",

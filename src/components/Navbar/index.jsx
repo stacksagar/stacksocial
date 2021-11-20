@@ -6,6 +6,7 @@ import SearchInput from "../utilities/SearchInput";
 import {useRootContext} from "../../context";
 import ToggleUser from "./ToggleUser";
 import SearchResults from "./SearchResults";
+import keys from "../utilities/keys";
 
 const Navbar = () => {
   const {
@@ -37,7 +38,7 @@ const Navbar = () => {
       setShowSearchResults(false);
     }
 
-    fetch(`/user/search/${value}`, {
+    fetch(keys.BACKEND_URL + `/user/search/${value}`, {
       method: "get",
     })
       .then((res) => res.json())

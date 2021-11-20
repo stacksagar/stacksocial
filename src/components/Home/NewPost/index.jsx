@@ -3,6 +3,7 @@ import {CameraIcon} from "@heroicons/react/outline";
 import {useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import {useRootContext} from "../../../context";
+import keys from "../../utilities/keys";
 
 export default function PostForm() {
   const {
@@ -24,7 +25,7 @@ export default function PostForm() {
 
     setLoading(true);
 
-    fetch("/post/new", {
+    fetch(keys.BACKEND_URL + "/post/new", {
       method: "post",
       headers: {
         authorization: localStorage.getItem("stackmedia_token"),

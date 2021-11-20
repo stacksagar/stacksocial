@@ -7,6 +7,7 @@ import Profile from "./components/Profile";
 import {useRootContext} from "./context/index";
 import EditProfile from "./components/Profile/EditProfile";
 import PrivateRoute from "./components/Routes/PrivateRoute";
+import keys from "./components/utilities/keys";
 
 const App = () => {
   const {
@@ -17,7 +18,7 @@ const App = () => {
   useEffect(() => {
     const token = localStorage.getItem("stackmedia_token");
     if (!user && token) {
-      fetch("/user/getinfo", {
+      fetch(keys.BACKEND_URL + "/user/getinfo", {
         method: "get",
         headers: {
           authorization: `Bearer ${token}`,

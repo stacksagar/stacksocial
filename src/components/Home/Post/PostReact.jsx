@@ -5,6 +5,7 @@ import {Dislike} from "../../Icons/Dislike";
 import Liked from "../../Icons/Liked";
 import {Disliked} from "../../Icons/Disliked";
 import {useRootContext} from "../../../context";
+import keys from "../../utilities/keys";
 
 const PostReact = ({post}) => {
   const {
@@ -16,7 +17,7 @@ const PostReact = ({post}) => {
     user.savedPosts.includes(post._id)
   );
   const likeAndDislikeHandler = (action, _id) => {
-    fetch(`/post/${action}`, {
+    fetch(keys.BACKEND_URL + `/post/${action}`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +36,7 @@ const PostReact = ({post}) => {
   };
 
   const savePostHandler = () => {
-    fetch("/user/savePost", {
+    fetch(keys.BACKEND_URL + "/user/savePost", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

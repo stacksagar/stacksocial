@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
+import keys from "../utilities/keys";
 import ProfilePost from "./ProfilePost";
 const ProfilePosts = ({showPosts, savedPosts, profileUser}) => {
   const [posts, setposts] = useState([]);
 
   useEffect(() => {
     let isMount = true;
-    fetch(`/post/userPosts/${profileUser._id}`, {
+    fetch(keys.BACKEND_URL + `/post/userPosts/${profileUser._id}`, {
       method: "get",
     })
       .then((res) => res.json())

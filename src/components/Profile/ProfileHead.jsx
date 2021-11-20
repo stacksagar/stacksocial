@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Button from "../utilities/Button";
 import {PencilAltIcon} from "@heroicons/react/outline";
 import {Link} from "react-router-dom";
+import keys from "../utilities/keys";
 
 const ProfileHead = ({authUser, profileUser, isLoggedInUser, dispatch}) => {
   const [isFollwing, setIsFollowing] = useState(false);
@@ -12,7 +13,7 @@ const ProfileHead = ({authUser, profileUser, isLoggedInUser, dispatch}) => {
   }, [profileUser, isLoggedInUser, authUser]);
 
   const followHandler = () => {
-    fetch("/user/follow", {
+    fetch(keys.BACKEND_URL + "/user/follow", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +31,7 @@ const ProfileHead = ({authUser, profileUser, isLoggedInUser, dispatch}) => {
   };
 
   const unfollowHandler = () => {
-    fetch("/user/unfollow", {
+    fetch(keys.BACKEND_URL + "/user/unfollow", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

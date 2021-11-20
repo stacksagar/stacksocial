@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useRootContext} from "../../../../context";
+import keys from "../../../utilities/keys";
 import AllComments from "./AllComments";
 import NewComment from "./NewComment";
 
@@ -9,7 +10,7 @@ const Comments = ({postID}) => {
 
   useEffect(() => {
     let mount = true;
-    fetch(`/post/comments/${postID}`, {
+    fetch(keys.BACKEND_URL + `/post/comments/${postID}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +33,7 @@ const Comments = ({postID}) => {
     if (!value) return;
     submitBtn.current.focus();
 
-    fetch("/post/comment", {
+    fetch(keys.BACKEND_URL + "/post/comment", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

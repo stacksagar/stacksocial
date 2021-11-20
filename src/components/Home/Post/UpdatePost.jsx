@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useRootContext} from "../../../context";
+import keys from "../../utilities/keys";
 
 const UpdatePost = ({post, showEdit, setShowEdit}) => {
   const [body, setBody] = useState(post?.body);
@@ -8,7 +9,7 @@ const UpdatePost = ({post, showEdit, setShowEdit}) => {
 
   const updatehandle = (_id) => {
     setLoading(true);
-    fetch("post/update", {
+    fetch(keys.BACKEND_URL + "/post/update", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

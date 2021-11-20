@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useRootContext} from "../../context";
+import keys from "../utilities/keys";
 
 const withFetch = (WrappedComponent, fetchPath) => {
   return () => {
@@ -53,7 +54,7 @@ const withFetch = (WrappedComponent, fetchPath) => {
       setLoading(true);
       e.preventDefault();
 
-      fetch(fetchPath, {
+      fetch(keys.BACKEND_URL + fetchPath, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

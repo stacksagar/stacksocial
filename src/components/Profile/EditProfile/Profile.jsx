@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Input from "../../utilities/input";
 import Button from "../../utilities/Button";
 import {useRootContext} from "../../../context";
+import keys from "../../utilities/keys";
 const Left = ({children}) => (
   <div className="w-80 text-right flex justify-end pr-3">{children}</div>
 );
@@ -41,7 +42,7 @@ const Profile = () => {
   }, [user]);
 
   const updateProfile = () => {
-    fetch("/user/update", {
+    fetch(keys.BACKEND_URL + "/user/update", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

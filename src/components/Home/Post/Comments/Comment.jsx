@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
+import keys from "../../../utilities/keys";
 import Reply from "./Reply";
 
 const Comment = ({comment: {body, user, _id}}) => {
@@ -11,7 +12,7 @@ const Comment = ({comment: {body, user, _id}}) => {
   const [allReplies, setAllReplies] = useState([]);
 
   useEffect(() => {
-    fetch(`/post/replies/${_id}`, {
+    fetch(keys.BACKEND_URL + `/post/replies/${_id}`, {
       method: "get",
     })
       .then((r) => r.json())
@@ -23,7 +24,7 @@ const Comment = ({comment: {body, user, _id}}) => {
 
   const replyHandler = (e) => {
     e.preventDefault();
-    fetch("/post/reply", {
+    fetch(keys.BACKEND_URL + "/post/reply", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

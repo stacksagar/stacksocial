@@ -18,7 +18,4 @@ const Signin = ({handleInput, handleForm, error, errors, loading}) => {
   );
 };
 
-export default withFetch(
-  Signin,
-  "https://stacksocial-backend.herokuapp.com/user/signin"
-);
+export default withFetch(Signin, "/user/signin");
