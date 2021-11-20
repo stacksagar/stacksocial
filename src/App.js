@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <div style={{background: "#100e17"}} className="text-white">
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Navbar />
         {showReg && <Registration />}
         <Switch>
